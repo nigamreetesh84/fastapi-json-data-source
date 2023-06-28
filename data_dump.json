@@ -1,0 +1,248 @@
+[
+  {
+    "name": "Network1",
+    "ip": "192.168.1.10",
+    "cidr": 24,
+    "netmask": "255.255.255.0",
+    "side": "Public",
+    "env": "Production",
+    "location": "New York",
+    "hosts": [
+      "host1.example.com",
+      "host2.example.com",
+      "host3.example.com"
+    ],
+    "id": 12345,
+    "routers": [
+      "router1",
+      "router2",
+      "router3"
+    ]
+  },
+  {
+    "name": "Network2",
+    "ip": "10.0.0.5",
+    "cidr": 16,
+    "netmask": "255.255.0.0",
+    "side": "Private",
+    "env": "Development",
+    "location": "London",
+    "hosts": [
+      "host4.example.com",
+      "host5.example.com"
+    ],
+    "id": 54321,
+    "routers": [
+      "router4",
+      "router5"
+    ]
+  },
+  {
+    "name": "Network3",
+    "ip": "172.16.0.20",
+    "cidr": 16,
+    "netmask": "255.255.0.0",
+    "side": "Public",
+    "env": "Testing",
+    "location": "San Francisco",
+    "hosts": [
+      "host6.example.com",
+      "host7.example.com",
+      "host8.example.com",
+      "host9.example.com"
+    ],
+    "id": 98765,
+    "routers": [
+      "router6",
+      "router7",
+      "router8"
+    ]
+  },
+  {
+    "name": "Network4",
+    "ip": "192.168.0.5",
+    "cidr": 24,
+    "netmask": "255.255.255.0",
+    "side": "Private",
+    "env": "Production",
+    "location": "Tokyo",
+    "hosts": [
+      "host10.example.com",
+      "host11.example.com",
+      "host12.example.com",
+      "host13.example.com",
+      "host14.example.com"
+    ],
+    "id": 24680,
+    "routers": [
+      "router9",
+      "router10"
+    ]
+  },
+  {
+    "name": "Network5",
+    "ip": "10.10.10.10",
+    "cidr": 8,
+    "netmask": "255.0.0.0",
+    "side": "Public",
+    "env": "Development",
+    "location": "Berlin",
+    "hosts": [
+      "host15.example.com",
+      "host16.example.com",
+      "host17.example.com",
+      "host18.example.com"
+    ],
+    "id": 13579,
+    "routers": [
+      "router11",
+      "router12",
+      "router13",
+      "router14"
+    ]
+  },
+  {
+    "name": "Network6",
+    "ip": "172.31.0.5",
+    "cidr": 20,
+    "netmask": "255.255.240.0",
+    "side": "Private",
+    "env": "Testing",
+    "location": "Sydney",
+    "hosts": [
+      "host19.example.com",
+      "host20.example.com",
+      "host21.example.com"
+    ],
+    "id": 86420,
+    "routers": [
+      "router15",
+      "router16",
+      "router17"
+    ]
+  },
+  {
+    "name": "Network7",
+    "ip": "192.168.2.15",
+    "cidr": 24,
+    "netmask": "255.255.255.0",
+    "side": "Public",
+    "env": "Production",
+    "location": "Toronto",
+    "hosts": [
+      "host22.example.com",
+      "host23.example.com",
+      "host24.example.com"
+    ],
+    "id": 98765,
+    "routers": [
+      "router18",
+      "router19"
+    ]
+  },
+  {
+    "name": "Network8",
+    "ip": "10.20.30.40",
+    "cidr": 16,
+    "netmask": "255.255.0.0",
+    "side": "Private",
+    "env": "Development",
+    "location": "Paris",
+    "hosts": [
+      "host25.example.com",
+      "host26.example.com",
+      "host27.example.com",
+      "host28.example.com",
+      "host29.example.com"
+    ],
+    "id": 12345,
+    "routers": [
+      "router20",
+      "router21",
+      "router22"
+    ]
+  },
+  {
+    "name": "Network9",
+    "ip": "172.18.0.5",
+    "cidr": 24,
+    "netmask": "255.255.255.0",
+    "side": "Public",
+    "env": "Testing",
+    "location": "Singapore",
+    "hosts": [
+      "host30.example.com",
+      "host31.example.com"
+    ],
+    "id": 54321,
+    "routers": [
+      "router23",
+      "router24"
+    ]
+  },
+  {
+    "name": "Network10",
+    "ip": "192.168.5.20",
+    "cidr": 24,
+    "netmask": "255.255.255.0",
+    "side": "Private",
+    "env": "Production",
+    "location": "Madrid",
+    "hosts": [
+      "host32.example.com",
+      "host33.example.com",
+      "host34.example.com",
+      "host35.example.com",
+      "host36.example.com"
+    ],
+    "id": 98765,
+    "routers": [
+      "router25",
+      "router26"
+    ]
+  },
+  {
+    "name": "Network11",
+    "ip": "10.100.100.5",
+    "cidr": 8,
+    "netmask": "255.0.0.0",
+    "side": "Public",
+    "env": "Development",
+    "location": "Rome",
+    "hosts": [
+      "host37.example.com",
+      "host38.example.com",
+      "host39.example.com",
+      "host40.example.com"
+    ],
+    "id": 24680,
+    "routers": [
+      "router27",
+      "router28",
+      "router29",
+      "router30"
+    ]
+  },
+  {
+    "name": "Network12",
+    "ip": "172.20.0.5",
+    "cidr": 20,
+    "netmask": "255.255.240.0",
+    "side": "Private",
+    "env": "Testing",
+    "location": "Seoul",
+"hosts": [
+      "host37.example.com",
+      "host38.example.com",
+      "host39.example.com",
+      "host40.example.com"
+    ],
+    "id": 24680,
+    "routers": [
+      "router27",
+      "router28",
+      "router29",
+      "router30"
+    ]
+}
+]
