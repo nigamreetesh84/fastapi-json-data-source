@@ -1,10 +1,12 @@
+import json
+import uvicorn
 from fastapi import FastAPI, Query
 
 app = FastAPI()
 
-networks = [
-    # Network data entries...
-]
+# Load data from JSON file
+with open("networks.json") as file:
+    networks = json.load(file)
 
 @app.get("/networks")
 async def get_networks(
@@ -23,9 +25,16 @@ async def get_networks(
         network
         for network in networks
         if all(
-            getattr(network, key) == value
-            for key, value in locals().items()
-            if key not in {"networks", "filtered_networks"} and value is not None
+            network.get("name") == name,
+            network.get("ip") == ip,
+            network.get("cidr") == cidr,
+            network.get("netmask") == netmask,
+            network.get("side") == side,
+            network.get("env") == env,
+            network.get("location") == location,
+            hosts in network.get("hosts", []),
+            network.get("id") == id,
+            routers in network.get("routers", [])
         )
     ]
 
