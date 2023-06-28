@@ -1,5 +1,4 @@
 import json
-import uvicorn
 from fastapi import FastAPI, Query
 
 app = FastAPI()
@@ -25,16 +24,18 @@ async def get_networks(
         network
         for network in networks
         if all(
-            network.get("name") == name,
-            network.get("ip") == ip,
-            network.get("cidr") == cidr,
-            network.get("netmask") == netmask,
-            network.get("side") == side,
-            network.get("env") == env,
-            network.get("location") == location,
-            hosts in network.get("hosts", []),
-            network.get("id") == id,
-            routers in network.get("routers", [])
+            (
+                name is None or network.get("name") == name,
+                ip is None or network.get("ip") == ip,
+                cidr is None or network.get("cidr") == cidr,
+                netmask is None or network.get("netmask") == netmask,
+                side is None or network.get("side") == side,
+                env is None or network.get("env") == env,
+                location is None or network.get("location") == location,
+                hosts is None or hosts in network.get("hosts", []),
+                id is None or network.get("id") == id,
+                routers is None or routers in network.get("routers", []),
+            )
         )
     ]
 
