@@ -1,42 +1,42 @@
-import json
+from typing import Optional, List
 from fastapi import FastAPI, Query
+import json
+
 
 app = FastAPI()
 
-# Load data from JSON file
-with open("networks.json") as file:
-    networks = json.load(file)
+DATA_DUMP_FILE = "data_dump.json"
 
-@app.get("/networks")
-async def get_networks(
-    name: str = Query(None),
-    ip: str = Query(None),
-    cidr: int = Query(None),
-    netmask: str = Query(None),
-    side: str = Query(None),
-    env: str = Query(None),
-    location: str = Query(None),
-    hosts: str = Query(None),
-    id: int = Query(None),
-    routers: str = Query(None),
+with open(DATA_DUMP_FILE) as fd:
+    devices = json.load(fd)
+
+
+@app.get("/devices")
+async def get_devices(
+    primaryName: Optional[str] = Query(None),
+    ownerEonid: Optional[int] = Query(None),
+    ip: Optional[str] = Query(None),
 ):
-    filtered_networks = [
-        network
-        for network in networks
-        if all(
-            (
-                name is None or network.get("name") == name,
-                ip is None or network.get("ip") == ip,
-                cidr is None or network.get("cidr") == cidr,
-                netmask is None or network.get("netmask") == netmask,
-                side is None or network.get("side") == side,
-                env is None or network.get("env") == env,
-                location is None or network.get("location") == location,
-                hosts is None or hosts in network.get("hosts", []),
-                id is None or network.get("id") == id,
-                routers is None or routers in network.get("routers", []),
-            )
-        )
-    ]
+    if not primaryName and not ownerEonid and not ip:
+        return devices
 
-    return {"networks": filtered_networks}
+    results = []
+    for device in devices:
+        if primaryName and device["primaryName"] == primaryName:
+            results.append(device)
+        elif ownerEonid and device["system"]["ownerEonid"] == ownerEonid:
+            results.append(device)
+        elif ip:
+            for interface in device["hardware"]["interfaces"]:
+                for assignment in interface["addressAssignments"]:
+                    if assignment["ip"] == ip:
+                        results.append(device)
+                        break
+
+    return results
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="localhost", port=8000)
