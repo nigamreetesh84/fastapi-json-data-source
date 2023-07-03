@@ -17,21 +17,23 @@ async def get_devices(
     ownerEonid: Optional[int] = Query(None),
     ip: Optional[str] = Query(None),
 ):
-    if not primaryName and not ownerEonid and not ip:
-        return devices
-
     results = []
     for device in devices:
-        if primaryName and device["primaryName"] == primaryName:
+        match_criteria = []
+        if primaryName:
+            match_criteria.append(device["primaryName"] == primaryName)
+        if ownerEonid:
+            match_criteria.append(device["system"]["ownerEonid"] == ownerEonid)
+        if ip:
+            match_criteria.append(
+                any(
+                    assignment["ip"] == ip
+                    for interface in device["hardware"]["interfaces"]
+                    for assignment in interface["addressAssignments"]
+                )
+            )
+        if len(match_criteria) == 0 or all(match_criteria):
             results.append(device)
-        elif ownerEonid and device["system"]["ownerEonid"] == ownerEonid:
-            results.append(device)
-        elif ip:
-            for interface in device["hardware"]["interfaces"]:
-                for assignment in interface["addressAssignments"]:
-                    if assignment["ip"] == ip:
-                        results.append(device)
-                        break
 
     return results
 
